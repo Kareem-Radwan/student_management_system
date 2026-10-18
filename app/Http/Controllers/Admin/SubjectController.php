@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -12,7 +13,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return "Hello Admin";
+        $subjects = Subject::all();
+        return view('subjects.index', ['subjects' => $subjects]);
     }
 
     /**
@@ -20,7 +22,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('subjects.create');
     }
 
     /**
@@ -28,7 +30,15 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+            'code' => ['required', 'string', 'max:50'],
+            'description' => ['string'],
+        ]);
+
+        Subject::create($request->all());
+
+        return redirect()->route("subjects.index");
     }
 
     /**
