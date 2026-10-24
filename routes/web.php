@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -12,10 +13,10 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
         return match(auth()->user()->role) {
-                    'admin' => view("admin.dashboard"),
-                    'teacher' => view("teacher.dashboard"),
-                    'student' => view("student.dashboard"),
-                    'parent' => view("parent.dashboard"),
+                    'admin' => app(DashboardController::class)->adminDashboard(),
+                    'teacher' => app(DashboardController::class)->teacherDashboard(),
+                    'student' => app(DashboardController::class)->studentDashboard(),
+                    'parent' => app(DashboardController::class)->parentDashboard(),
                     'default' => abort(403)
                     };
         })->middleware(['auth', 'verified'])->name('dashboard');
