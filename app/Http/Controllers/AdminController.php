@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AdminController extends Controller
 {
@@ -11,7 +14,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view("admin.index");
+        $admins = User::all()->where("role", "admin");
+        return view("admin.index", ["admins" => $admins]);
     }
 
     /**
@@ -27,31 +31,21 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            "name" => ['required', 'string'],
+            "email" => ['required', 'string', 'email', 'unique:users,email'],
+            'password' => ['required', 'string', Password::defaults()],
+            'role' => ['required', 'in:admin'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => $validated['role'],
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return redirect()->route('admins.index');
     }
 
     /**
@@ -59,6 +53,8 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $admin = User::findOrFail($id);
+        $admin->delete();
+        return redirect()->route('admins.index');
     }
 }
