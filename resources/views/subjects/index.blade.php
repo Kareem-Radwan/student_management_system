@@ -21,6 +21,28 @@
                     + Create Subject
                 </a>
             </div>
+            {{-- Summary --}}
+            <div class="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM5 21v-2a7 7 0 0114 0v2H5z" />
+                        </svg>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">
+                            Total Subjects
+                        </p>
+                        <p class="mt-1 text-2xl font-bold text-gray-900">
+                            {{ $subjects->count() }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
 
             {{-- Subjects --}}
             @if ($subjects->isEmpty())

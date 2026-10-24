@@ -60,6 +60,8 @@ class TeacherController extends Controller
                 'join_date' => $validated['join_date'],
             ]);
         });
+
+        return redirect()->route('teachers.index');
     }
 
     /**
