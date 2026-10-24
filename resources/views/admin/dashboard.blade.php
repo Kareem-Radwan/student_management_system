@@ -1,17 +1,11 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold text-gray-800 leading-tight">
-            Admin Dashboard
-        </h2>
-    </x-slot>
-
     <div class="py-12 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {{-- Welcome Section --}}
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">
-                    Welcome, Admin
+                    Welcome, {{ Auth::user()->name }}
                 </h1>
                 <p class="mt-2 text-gray-600">
                     Manage subjects, teachers, and administrators.
