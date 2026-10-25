@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
@@ -31,6 +32,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('subjects', SubjectController::class);
     Route::resource('teachers', TeacherController::class);
     Route::resource('admins', AdminController::class);
+
+    Route::resource('students', StudentController::class);
 });
 
 require __DIR__.'/auth.php';

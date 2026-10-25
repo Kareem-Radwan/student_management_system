@@ -30,11 +30,33 @@ class User extends Authenticatable
         ];
     }
 
-    public function teacher() {
+    public function teacher()
+    {
         return $this->hasOne(Teacher::class);
     }
 
-    public function isTeacher() {
+    public function isTeacher()
+    {
         return $this->teacher()->exists();
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function isStudent()
+    {
+        return $this->student()->exists();
+    }
+
+    public function parent()
+    {
+        return $this->hasOne(ParentModel::class);
+    }
+
+    public function isParent()
+    {
+        return $this->parent()->exists();
     }
 }

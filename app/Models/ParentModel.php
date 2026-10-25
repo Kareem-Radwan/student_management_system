@@ -8,6 +8,8 @@ class ParentModel extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    protected $table = 'parents';
+
     protected $casts = [
         'is_active' => 'boolean',
         'is_primary_contact' => 'boolean'
