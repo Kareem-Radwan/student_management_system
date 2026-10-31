@@ -17,86 +17,181 @@
                     Dashboard
                 </x-nav-link>
 
-                {{-- Teachers Dropdown --}}
-                <div x-data="{ dropdown: false }" class="relative">
-                    <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
-                        class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
-                               text-gray-600 hover:text-gray-900 transition">
-                        Teachers
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                        </svg>
-                    </button>
+                {{-- Admin Only Navigation --}}
+                @if (auth()->user()->role === 'admin')
+                    {{-- Subjects Dropdown --}}
+                    <div x-data="{ dropdown: false }" class="relative">
+                        <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
+                            class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
+                                   text-gray-600 hover:text-gray-900 transition">
+                            Subjects
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m19 9-7 7-7-7" />
+                            </svg>
+                        </button>
 
-                    <div x-show="dropdown" x-cloak x-transition
-                        class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
-                               bg-white py-2 shadow-lg">
+                        <div x-show="dropdown" x-cloak x-transition
+                            class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
+                                   bg-white py-2 shadow-lg">
 
-                        <a href="{{ route('teachers.index') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Show All Teachers
-                        </a>
+                            <a href="{{ route('subjects.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Show All Subjects
+                            </a>
 
-                        <a href="{{ route('teachers.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Create Teacher
-                        </a>
+                            <a href="{{ route('subjects.create') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Create Subject
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                {{-- Subjects Dropdown --}}
-                <div x-data="{ dropdown: false }" class="relative">
-                    <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
-                        class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
-                               text-gray-600 hover:text-gray-900 transition">
+                    {{-- Teachers Dropdown --}}
+                    <div x-data="{ dropdown: false }" class="relative">
+                        <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
+                            class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
+                                   text-gray-600 hover:text-gray-900 transition">
+                            Teachers
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m19 9-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div x-show="dropdown" x-cloak x-transition
+                            class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
+                                   bg-white py-2 shadow-lg">
+
+                            <a href="{{ route('teachers.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Show All Teachers
+                            </a>
+
+                            <a href="{{ route('teachers.create') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Create Teacher
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- Students Dropdown --}}
+                    <div x-data="{ dropdown: false }" class="relative">
+                        <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
+                            class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
+                                   text-gray-600 hover:text-gray-900 transition">
+                            Students
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m19 9-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div x-show="dropdown" x-cloak x-transition
+                            class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
+                                   bg-white py-2 shadow-lg">
+
+                            <a href="{{ route('students.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Show All Students
+                            </a>
+
+                            <a href="{{ route('students.create') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Create Student
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- Parents Dropdown --}}
+                    <div x-data="{ dropdown: false }" class="relative">
+                        <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
+                            class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
+                                   text-gray-600 hover:text-gray-900 transition">
+                            Parents
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m19 9-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div x-show="dropdown" x-cloak x-transition
+                            class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
+                                   bg-white py-2 shadow-lg">
+
+                            <a href="{{ route('parents.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Show All Parents
+                            </a>
+
+                            <a href="{{ route('parents.create') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Create Parent
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- Admins Dropdown --}}
+                    <div x-data="{ dropdown: false }" class="relative">
+                        <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
+                            class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
+                                   text-gray-600 hover:text-gray-900 transition">
+                            Admins
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m19 9-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div x-show="dropdown" x-cloak x-transition
+                            class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
+                                   bg-white py-2 shadow-lg">
+
+                            <a href="{{ route('admins.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Show All Admins
+                            </a>
+
+                            <a href="{{ route('admins.create') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Create Admin
+                            </a>
+                        </div>
+                    </div>
+                @endif
+
+                {{-- Teacher Navigation --}}
+                @if (auth()->user()->role === 'teacher')
+                    <x-nav-link :href="route('subjects.index')">
                         Subjects
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                        </svg>
-                    </button>
+                    </x-nav-link>
 
-                    <div x-show="dropdown" x-cloak x-transition
-                        class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
-                               bg-white py-2 shadow-lg">
+                    <x-nav-link :href="route('students.index')">
+                        Students
+                    </x-nav-link>
+                @endif
 
-                        <a href="{{ route('subjects.index') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Show All Subjects
-                        </a>
+                {{-- Student Navigation --}}
+                @if (auth()->user()->role === 'student')
+                    <x-nav-link :href="route('subjects.index')">
+                        My Subjects
+                    </x-nav-link>
 
-                        <a href="{{ route('subjects.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Create Subject
-                        </a>
-                    </div>
-                </div>
+                    <x-nav-link href="#">
+                        My Grades
+                    </x-nav-link>
+                @endif
 
-                {{-- Admins Dropdown --}}
-                <div x-data="{ dropdown: false }" class="relative">
-                    <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
-                        class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
-                               text-gray-600 hover:text-gray-900 transition">
-                        Admins
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                        </svg>
-                    </button>
+                {{-- Parent Navigation --}}
+                @if (auth()->user()->role === 'parent')
+                    <x-nav-link href="#">
+                        My Children
+                    </x-nav-link>
 
-                    <div x-show="dropdown" x-cloak x-transition
-                        class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
-                               bg-white py-2 shadow-lg">
-
-                        <a href="{{ route('admins.index') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Show All Admins
-                        </a>
-
-                        <a href="{{ route('admins.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Create Admin
-                        </a>
-                    </div>
-                </div>
+                    <x-nav-link href="#">
+                        Academic Reports
+                    </x-nav-link>
+                @endif
 
             </div>
 
@@ -162,71 +257,156 @@
                 Dashboard
             </x-responsive-nav-link>
 
-            {{-- Mobile Teachers --}}
-            <div x-data="{ dropdown: false }" class="py-1">
-                <button @click="dropdown = !dropdown"
-                    class="flex w-full items-center justify-between rounded-md px-3 py-2
-                           text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
-                    Teachers
-                    <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                    </svg>
-                </button>
+            {{-- Admin Only Mobile Navigation --}}
+            @if (auth()->user()->role === 'admin')
+                {{-- Mobile Subjects --}}
+                <div x-data="{ dropdown: false }" class="py-1">
+                    <button @click="dropdown = !dropdown"
+                        class="flex w-full items-center justify-between rounded-md px-3 py-2
+                               text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
+                        Subjects
+                        <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
 
-                <div x-show="dropdown" x-cloak class="ml-4 mt-1 space-y-1 border-l-2 border-indigo-100 pl-3">
-                    <x-responsive-nav-link :href="route('teachers.index')">
-                        Show All Teachers
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('teachers.create')">
-                        Create Teacher
-                    </x-responsive-nav-link>
+                    <div x-show="dropdown" x-cloak class="ml-4 mt-1 space-y-1 border-l-2 border-indigo-100 pl-3">
+                        <x-responsive-nav-link :href="route('subjects.index')">
+                            Show All Subjects
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('subjects.create')">
+                            Create Subject
+                        </x-responsive-nav-link>
+                    </div>
                 </div>
-            </div>
 
-            {{-- Mobile Subjects --}}
-            <div x-data="{ dropdown: false }" class="py-1">
-                <button @click="dropdown = !dropdown"
-                    class="flex w-full items-center justify-between rounded-md px-3 py-2
-                           text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
+                {{-- Mobile Teachers --}}
+                <div x-data="{ dropdown: false }" class="py-1">
+                    <button @click="dropdown = !dropdown"
+                        class="flex w-full items-center justify-between rounded-md px-3 py-2
+                               text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
+                        Teachers
+                        <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="dropdown" x-cloak class="ml-4 mt-1 space-y-1 border-l-2 border-indigo-100 pl-3">
+                        <x-responsive-nav-link :href="route('teachers.index')">
+                            Show All Teachers
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('teachers.create')">
+                            Create Teacher
+                        </x-responsive-nav-link>
+                    </div>
+                </div>
+
+                {{-- Mobile Students --}}
+                <div x-data="{ dropdown: false }" class="py-1">
+                    <button @click="dropdown = !dropdown"
+                        class="flex w-full items-center justify-between rounded-md px-3 py-2
+                               text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
+                        Students
+                        <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="dropdown" x-cloak class="ml-4 mt-1 space-y-1 border-l-2 border-indigo-100 pl-3">
+                        <x-responsive-nav-link :href="route('students.index')">
+                            Show All Students
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('students.create')">
+                            Create Student
+                        </x-responsive-nav-link>
+                    </div>
+                </div>
+
+                {{-- Mobile Parents --}}
+                <div x-data="{ dropdown: false }" class="py-1">
+                    <button @click="dropdown = !dropdown"
+                        class="flex w-full items-center justify-between rounded-md px-3 py-2
+                               text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
+                        Parents
+                        <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="dropdown" x-cloak class="ml-4 mt-1 space-y-1 border-l-2 border-indigo-100 pl-3">
+                        <x-responsive-nav-link :href="route('parents.index')">
+                            Show All Parents
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('parents.create')">
+                            Create Parent
+                        </x-responsive-nav-link>
+                    </div>
+                </div>
+
+                {{-- Mobile Admins --}}
+                <div x-data="{ dropdown: false }" class="py-1">
+                    <button @click="dropdown = !dropdown"
+                        class="flex w-full items-center justify-between rounded-md px-3 py-2
+                               text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
+                        Admins
+                        <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="dropdown" x-cloak class="ml-4 mt-1 space-y-1 border-l-2 border-indigo-100 pl-3">
+                        <x-responsive-nav-link :href="route('admins.index')">
+                            Show All Admins
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('admins.create')">
+                            Create Admin
+                        </x-responsive-nav-link>
+                    </div>
+                </div>
+            @endif
+
+            {{-- Teacher Mobile Navigation --}}
+            @if (auth()->user()->role === 'teacher')
+                <x-responsive-nav-link :href="route('subjects.index')">
                     Subjects
-                    <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                    </svg>
-                </button>
+                </x-responsive-nav-link>
 
-                <div x-show="dropdown" x-cloak class="ml-4 mt-1 space-y-1 border-l-2 border-indigo-100 pl-3">
-                    <x-responsive-nav-link :href="route('subjects.index')">
-                        Show All Subjects
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('subjects.create')">
-                        Create Subject
-                    </x-responsive-nav-link>
-                </div>
-            </div>
+                <x-responsive-nav-link :href="route('students.index')">
+                    Students
+                </x-responsive-nav-link>
+            @endif
 
-            {{-- Mobile Admins --}}
-            <div x-data="{ dropdown: false }" class="py-1">
-                <button @click="dropdown = !dropdown"
-                    class="flex w-full items-center justify-between rounded-md px-3 py-2
-                           text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
-                    Admins
-                    <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                    </svg>
-                </button>
+            {{-- Student Mobile Navigation --}}
+            @if (auth()->user()->role === 'student')
+                <x-responsive-nav-link :href="route('subjects.index')">
+                    My Subjects
+                </x-responsive-nav-link>
 
-                <div x-show="dropdown" x-cloak class="ml-4 mt-1 space-y-1 border-l-2 border-indigo-100 pl-3">
-                    <x-responsive-nav-link :href="route('admins.index')">
-                        Show All Admins
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('admins.create')">
-                        Create Admin
-                    </x-responsive-nav-link>
-                </div>
-            </div>
+                <x-responsive-nav-link href="#">
+                    My Grades
+                </x-responsive-nav-link>
+            @endif
+
+            {{-- Parent Mobile Navigation --}}
+            @if (auth()->user()->role === 'parent')
+                <x-responsive-nav-link href="#">
+                    My Children
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link href="#">
+                    Academic Reports
+                </x-responsive-nav-link>
+            @endif
 
         </div>
 
