@@ -218,6 +218,30 @@
                         </a>
                     </div>
 
+                    {{-- Create Student --}}
+                    <div
+                        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-purple-300 hover:shadow-md">
+                        <div
+                            class="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-100 text-purple-600">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 11a4 4 0 100-8 4 4 0 000 8zm-7 10v-2a7 7 0 0114 0v2m2-13v6m3-3h-6" />
+                            </svg>
+                        </div>
+
+                        <h3 class="mt-5 text-lg font-bold text-gray-900">
+                            Create Student
+                        </h3>
+                        <p class="mt-2 text-sm leading-6 text-gray-500">
+                            Create another student account.
+                        </p>
+
+                        <a href="{{ route('students.create') }}"
+                            class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-purple-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-purple-700">
+                            Add Student
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
