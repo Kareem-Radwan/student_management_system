@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
+use App\Http\Controllers\Admin\ParentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('students', StudentController::class);
     Route::post('students/{student}/link-parent', [StudentController::class, 'linkParent'])->name("students.link-parent");
     Route::delete('students/{student}/unlink-parent/{parent}', [StudentController::class, 'unlinkParent'])->name("students.unlink-parent");
+
+    Route::resource('parents', ParentController::class);
+    Route::post('parents/{parent}/link-student', [ParentController::class, 'linkStudent'])->name("parents.link-student");
+    Route::delete('parents/{parent}/unlink-student/{student}', [ParentController::class, 'unlinkStudent'])->name("parents.unlink-student");
+
 });
 
 require __DIR__.'/auth.php';

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ParentModel;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
@@ -16,11 +17,13 @@ class DashboardController extends Controller
         $teachers = Teacher::count("id");
         $subjects = Subject::count("id");
         $students = Student::count("id");
+        $parents = ParentModel::count("id");
         return view("admin.dashboard", [
             "admins" => $admins,
             "teachers" => $teachers,
             "subjects" => $subjects,
-            "students" => $students
+            "students" => $students,
+            "parents" => $parents
         ]);
     }
 

@@ -133,6 +133,32 @@
                     </a>
                 </div>
 
+                {{-- Parents --}}
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">
+                                Total Parents
+                            </p>
+                            <p class="mt-3 text-3xl font-bold text-gray-900">
+                                {{ $parents }}
+                            </p>
+                        </div>
+
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-100 text-green-600">
+                            <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H2v-2a4 4 0 017.75-1.25M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a3 3 0 10-6 0 3 3 0 006 0z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('parents.index') }}"
+                        class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-700">
+                        View parents
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
             </div>
 
             {{-- Quick Actions --}}
@@ -239,6 +265,29 @@
                         <a href="{{ route('students.create') }}"
                             class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-purple-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-purple-700">
                             Add Student
+                        </a>
+                    </div>
+
+                    {{-- Create Parent --}}
+                    <div
+                        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-green-300 hover:shadow-md">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-green-600">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M18 20H6a2 2 0 01-2-2v-1a6 6 0 0112 0v1a2 2 0 01-2 2zm-6-10a4 4 0 100-8 4 4 0 000 8zm7-1v6m-3-3h6" />
+                            </svg>
+                        </div>
+
+                        <h3 class="mt-5 text-lg font-bold text-gray-900">
+                            Create Parent
+                        </h3>
+                        <p class="mt-2 text-sm leading-6 text-gray-500">
+                            Register a parent and configure their account.
+                        </p>
+
+                        <a href="{{ route('parents.create') }}"
+                            class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-green-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-700">
+                            Add Parent
                         </a>
                     </div>
 
