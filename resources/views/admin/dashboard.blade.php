@@ -104,6 +104,35 @@
                         <span aria-hidden="true">&rarr;</span>
                     </a>
                 </div>
+
+                {{-- Students --}}
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">
+                                Total students
+                            </p>
+                            <p class="mt-3 text-3xl font-bold text-gray-900">
+                                {{ $students }}
+                            </p>
+                        </div>
+
+                        <div
+                            class="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-100 text-purple-600">
+                            <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 11a4 4 0 100-8 4 4 0 000 8zm-7 10v-2a7 7 0 0114 0v2m2-13v6m3-3h-6" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('students.index') }}"
+                        class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-purple-600 hover:text-purple-700">
+                        View students
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
             </div>
 
             {{-- Quick Actions --}}

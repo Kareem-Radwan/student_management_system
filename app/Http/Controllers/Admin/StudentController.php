@@ -101,7 +101,8 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         $student->load(['user', 'parents.user']);
-        return view('admin.students.show', ["student" => $student]);
+        $availableParents = ParentModel::with('user')->where('is_active', true)->get();
+        return view('admin.students.show', ["student" => $student, "availableParents" => $availableParents]);
     }
 
     /**
@@ -120,12 +121,12 @@ class StudentController extends Controller
 
     public function linkParent(Request $request, Student $student)
     {
-        $validated = $request->validate([[
+        $validated = $request->validate([
             'parent_id' => ['required', 'exists:parents,id'],
             'is_primary' => ['boolean']
-        ]]);
+        ]);
 
-        if ($student->parents()->where('parent_id', $validated['parent_id'])->exists()) {
+        if ($student->parents()->where('parent_student.parent_id', $validated['parent_id'])->exists()) {
             return back()->with('error', 'This student already have this parent');
         }
 

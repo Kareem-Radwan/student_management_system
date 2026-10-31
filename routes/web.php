@@ -34,6 +34,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('admins', AdminController::class);
 
     Route::resource('students', StudentController::class);
+    Route::post('students/{student}/link-parent', [StudentController::class, 'linkParent'])->name("students.link-parent");
+    Route::delete('students/{student}/unlink-parent/{parent}', [StudentController::class, 'unlinkParent'])->name("students.unlink-parent");
 });
 
 require __DIR__.'/auth.php';

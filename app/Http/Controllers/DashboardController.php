@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
@@ -14,10 +15,12 @@ class DashboardController extends Controller
         $admins = User::all()->where("role", "admin")->count();
         $teachers = Teacher::count("id");
         $subjects = Subject::count("id");
+        $students = Student::count("id");
         return view("admin.dashboard", [
             "admins" => $admins,
             "teachers" => $teachers,
-            "subjects" => $subjects
+            "subjects" => $subjects,
+            "students" => $students
         ]);
     }
 
