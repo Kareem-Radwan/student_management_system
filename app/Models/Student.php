@@ -38,4 +38,19 @@ class Student extends Model
     {
         return $this->user->name;
     }
+
+    public function joinRequests()
+    {
+        return $this->hasMany(ClassJoinRequest::class);
+    }
+
+    public function classes()
+    {
+        return $this->belongsToMany(SchoolClass::class, 'class_student')->withTimestamps();
+    }
+
+    public function grades()
+    {
+        return $this->hasMany(PostGrade::class);
+    }
 }

@@ -18,7 +18,7 @@
                 </x-nav-link>
 
                 {{-- Admin Only Navigation --}}
-                @if (auth()->user()->role === 'admin')
+                @if(auth()->user()->role === 'admin')
                     {{-- Subjects Dropdown --}}
                     <div x-data="{ dropdown: false }" class="relative">
                         <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
@@ -26,8 +26,7 @@
                                    text-gray-600 hover:text-gray-900 transition">
                             Subjects
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 9-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                             </svg>
                         </button>
 
@@ -54,8 +53,7 @@
                                    text-gray-600 hover:text-gray-900 transition">
                             Teachers
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 9-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                             </svg>
                         </button>
 
@@ -82,8 +80,7 @@
                                    text-gray-600 hover:text-gray-900 transition">
                             Students
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 9-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                             </svg>
                         </button>
 
@@ -110,8 +107,7 @@
                                    text-gray-600 hover:text-gray-900 transition">
                             Parents
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 9-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                             </svg>
                         </button>
 
@@ -131,6 +127,31 @@
                         </div>
                     </div>
 
+                    {{-- Classes Dropdown --}}
+                    <div x-data="{ dropdown: false }" class="relative">
+                        <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
+                            class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium
+                                   text-gray-600 hover:text-gray-900 transition">
+                            Classes
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div x-show="dropdown" x-cloak x-transition
+                            class="absolute left-0 z-50 mt-2 w-48 rounded-lg border border-gray-200
+                                   bg-white py-2 shadow-lg">
+                            <a href="{{ route('classes.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Show All Classes
+                            </a>
+                            <a href="{{ route('classes.create') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Create Class
+                            </a>
+                        </div>
+                    </div>
+
                     {{-- Admins Dropdown --}}
                     <div x-data="{ dropdown: false }" class="relative">
                         <button @click="dropdown = !dropdown" @click.outside="dropdown = false"
@@ -138,8 +159,7 @@
                                    text-gray-600 hover:text-gray-900 transition">
                             Admins
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 9-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                             </svg>
                         </button>
 
@@ -161,20 +181,16 @@
                 @endif
 
                 {{-- Teacher Navigation --}}
-                @if (auth()->user()->role === 'teacher')
-                    <x-nav-link :href="route('subjects.index')">
-                        Subjects
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('students.index')">
-                        Students
+                @if(auth()->user()->role === 'teacher')
+                    <x-nav-link :href="route('my-classes.index')">
+                        My Classes
                     </x-nav-link>
                 @endif
 
                 {{-- Student Navigation --}}
-                @if (auth()->user()->role === 'student')
-                    <x-nav-link :href="route('subjects.index')">
-                        My Subjects
+                @if(auth()->user()->role === 'student')
+                    <x-nav-link :href="route('my-classes.index')">
+                        My Classes
                     </x-nav-link>
 
                     <x-nav-link href="#">
@@ -183,7 +199,7 @@
                 @endif
 
                 {{-- Parent Navigation --}}
-                @if (auth()->user()->role === 'parent')
+                @if(auth()->user()->role === 'parent')
                     <x-nav-link href="#">
                         My Children
                     </x-nav-link>
@@ -258,7 +274,7 @@
             </x-responsive-nav-link>
 
             {{-- Admin Only Mobile Navigation --}}
-            @if (auth()->user()->role === 'admin')
+            @if(auth()->user()->role === 'admin')
                 {{-- Mobile Subjects --}}
                 <div x-data="{ dropdown: false }" class="py-1">
                     <button @click="dropdown = !dropdown"
@@ -267,8 +283,7 @@
                         Subjects
                         <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 9-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                         </svg>
                     </button>
 
@@ -290,8 +305,7 @@
                         Teachers
                         <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 9-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                         </svg>
                     </button>
 
@@ -313,8 +327,7 @@
                         Students
                         <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 9-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                         </svg>
                     </button>
 
@@ -336,8 +349,7 @@
                         Parents
                         <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 9-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                         </svg>
                     </button>
 
@@ -351,6 +363,11 @@
                     </div>
                 </div>
 
+                {{-- Mobile Classes --}}
+                <x-responsive-nav-link :href="route('classes.index')">
+                    Classes
+                </x-responsive-nav-link>
+
                 {{-- Mobile Admins --}}
                 <div x-data="{ dropdown: false }" class="py-1">
                     <button @click="dropdown = !dropdown"
@@ -359,8 +376,7 @@
                         Admins
                         <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': dropdown }" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 9-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
                         </svg>
                     </button>
 
@@ -376,20 +392,16 @@
             @endif
 
             {{-- Teacher Mobile Navigation --}}
-            @if (auth()->user()->role === 'teacher')
-                <x-responsive-nav-link :href="route('subjects.index')">
-                    Subjects
-                </x-responsive-nav-link>
-
-                <x-responsive-nav-link :href="route('students.index')">
-                    Students
+            @if(auth()->user()->role === 'teacher')
+                <x-responsive-nav-link :href="route('my-classes.index')">
+                    My Classes
                 </x-responsive-nav-link>
             @endif
 
             {{-- Student Mobile Navigation --}}
-            @if (auth()->user()->role === 'student')
-                <x-responsive-nav-link :href="route('subjects.index')">
-                    My Subjects
+            @if(auth()->user()->role === 'student')
+                <x-responsive-nav-link :href="route('my-classes.index')">
+                    My Classes
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="#">
@@ -398,7 +410,7 @@
             @endif
 
             {{-- Parent Mobile Navigation --}}
-            @if (auth()->user()->role === 'parent')
+            @if(auth()->user()->role === 'parent')
                 <x-responsive-nav-link href="#">
                     My Children
                 </x-responsive-nav-link>

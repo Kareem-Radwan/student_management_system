@@ -29,17 +29,18 @@ class DashboardController extends Controller
 
     public function teacherDashboard()
     {
-        return view("teacher.dashboard");
+        $classes = auth()->user()->teacher->classes()->with('schedules')->withCount('students')->latest()->get();
+
+        return view("teacher.dashboard", compact('classes'));
     }
     public function studentDashboard()
     {
-        return view("student.dashboard");
-
+        $classes = auth()->user()->student->classes()->with(['schedules', 'teacher.user'])->get();
+        return view("student.dashboard", compact('classes'));
     }
     public function parentDashboard()
     {
-        return view("parent.dashboard");
-
+        $children = auth()->user()->parent->students()->with(['user', 'classes', 'grades.post.schoolClass'])->get();
+        return view("parent.dashboard", compact('children'));
     }
-
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SchoolClass;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class TeacherController extends Controller
@@ -39,7 +41,7 @@ class TeacherController extends Controller
             'password' => ['required', 'string', Password::defaults()],
             'role' => ['required', 'in:teacher'],
 
-            'department' => ['nullable', 'string'],
+            'department' => ['required', Rule::in(SchoolClass::DEPARTMENTS)],
             'qualification' => ['nullable', 'string'],
             'specialization' => ['nullable', 'string'],
             'join_date' => ['nullable', 'date']

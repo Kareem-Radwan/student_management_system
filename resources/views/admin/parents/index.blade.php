@@ -209,6 +209,11 @@
                                     View
                                 </a>
 
+                                <a href="{{ route('parents.edit', $parent) }}"
+                                    class="text-sm font-semibold text-indigo-600 transition hover:text-indigo-800">
+                                    Edit
+                                </a>
+
                                 <form action="{{ route('parents.destroy', $parent) }}" method="POST"
                                     onsubmit="return confirm('Are you sure you want to delete this parent?')">
                                     @csrf

@@ -75,12 +75,16 @@
                         Department
                     </label>
 
-                    <input type="text" id="department" name="department" value="{{ old('department') }}"
-                        placeholder="e.g. Mathematics" required
+                    <select id="department" name="department" required
                         class="w-full rounded-lg border border-gray-300 px-4 py-3
-                            text-gray-900 placeholder-gray-400 shadow-sm
+                            text-gray-900 shadow-sm
                             focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200
                             outline-none transition">
+                        <option value="">Select a department</option>
+                        @foreach (\App\Models\SchoolClass::DEPARTMENTS as $department)
+                            <option value="{{ $department }}" @selected(old('department') === $department)>{{ $department }}</option>
+                        @endforeach
+                    </select>
 
                     @error('department')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

@@ -340,6 +340,11 @@
                     class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50">
                     &larr; Back to Parents
                 </a>
+
+                <a href="{{ route('parents.edit', $parent) }}"
+                    class="inline-flex items-center justify-center rounded-lg bg-pink-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-pink-700">
+                    Edit Parent
+                </a>
             </div>
 
         </div>
